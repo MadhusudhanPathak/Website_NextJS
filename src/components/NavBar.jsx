@@ -50,7 +50,7 @@ export default function Navbar(){
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             {""}
-            What's Wisdom
+            {"What's Wisdom"}
           </Link>
           <ModeToggle />
           </nav>
