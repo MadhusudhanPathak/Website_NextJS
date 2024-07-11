@@ -11,6 +11,13 @@ export const PersonaData = {
         hrefto: "https://dhnz.short.gy/connect",
       },
       {
+        header: "AWE - Artificial Wisdom Essay",
+        desc: "May,Sep,Oct 2021 - March,Sep,Oct 2023 - Current",
+        minDesc:
+          "It discusses wisdom as a dynamic virtue crucial for ethical decision-making in AI development. The pace of scientific advancement contrasts with the gradual accumulation of wisdom, positioning it as a master virtue integrating emotional insight and ethical reasoning alongside logical intelligence. Current AI safety approaches have limitations, requiring engagement with meta-ethics to establish ethical frameworks. The automation of wisdom poses promise and complexity, with some aspects automatable and others requiring human intervention.",
+        hrefto: "https://dhnz.short.gy/connect",
+      },
+      {
         header: "DSW - Data Structure of Wisdom",
         desc: "June,July 2019 - Oct,Nov 2019 - May,June, 2020",
         minDesc:
