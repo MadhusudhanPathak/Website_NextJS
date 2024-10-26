@@ -11,6 +11,13 @@ export const PersonaData = {
         hrefto: "https://dhnz.short.gy/connect",
       },
       {
+        header: "FOSI - Future of Super Intelligence",
+        desc: "September 2024",
+        minDesc:
+          "This is a compilation of five essays that examines the challenge of aligning Artificial Superintelligence (ASI) with human values, noting ASI potential to prioritize its own survival and influence human systems. Traditional control approaches may not apply and this raises concerns about ASI capacity to comprehend or uphold human morals. The essay stresses the need for unparalleled wisdom and foresight as we navigate this uncertain realm, calling for a balance of curiosity, caution, innovation, and ethical responsibility.",
+        hrefto: "https://dhnz.short.gy/fosi",
+      },
+      {
         header: "AWE - Artificial Wisdom Essay",
         desc: "July 2024",
         minDesc:
