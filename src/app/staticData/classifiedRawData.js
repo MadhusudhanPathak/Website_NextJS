@@ -4,6 +4,13 @@ export const PersonaData = {
   Myspy: {
     discoveries: [
       {
+        header: "AWToC - Theory of Change for Artificial Wisdom",
+        desc: "Feb 2025",
+        minDesc:
+          "This is a precise Theory of Change document I wrote regarding the field I am currently pursuing, AI Alignment through Ethics, emphasizing Metaethical Paradigms and Artificial Wisdom. I made this a while ago as part of an Application process,but I recently refined it to make it genrally usable. This is a structured articulation of how I am currently planning to move forward with my Reseach.",
+        hrefto: "https://dhnz.short.gy/awtoc",
+      },
+      {
         header: "CQE - Computed Quantum Existence",
         desc: "May,Sep,Oct 2021 - March,Sep,Oct 2023 - Current",
         minDesc:
@@ -30,13 +37,6 @@ export const PersonaData = {
         minDesc:
           "DSW is a framework for understanding and developing Artificial Wisdom. In this I try to lay down the fundamental philosophucal aspects we need to consider and try to design. I have abstracted Data Structures of Logic and drawn parallels from it to form its counterpart w.r.t Wisdom.",
         hrefto: "https://dhnz.short.gy/dsw",
-      },
-      {
-        header: "Rewrite of DSW using Google Bard",
-        desc: "February 2024",
-        minDesc:
-          "Since the original DSW is not written properly and academically, many people faced problem reading and understanding it. While I am currently working on making professional published papers out of the ideas from DSW, I thought to make a temporary version of DSW that is easier to understand. I thought of taking assistance from Bard, but it was capable of doing the whole thing. So here is my conversation with Bard regarding DSW, feel free to have your own.",
-        hrefto: "https://dhnz.short.gy/rw_dsw",
       },
       {
         header: "P3 - Peacefully Paired Perspectives - Startup",
@@ -76,6 +76,13 @@ export const PersonaData = {
         minDesc:
           "This proposes a 10 Element journey to enlightenment using quantum physics analogies. It emphasizes understanding, clear perception, and shedding illusions. Realization, spirituality, and enlightenment lead to the ultimate goal: oneness with everything. Remember, it's just one tool, not a rigid map, and there are many paths to enlightenment.",
         hrefto: "https://dhnz.short.gy/fde",
+      },
+      {
+        header: "P3 - Pyaar, Principle, and Purpose",
+        desc: "Feb 2025",
+        minDesc:
+          "This is one of my first general post or article regarding a Philosophical Concept. I have also made a quick video about it availble on my channel. The P3 Model is a powerful framework for understanding the interplay between Love, Principles, and Purpose. By embracing this cycle, individuals can achieve a balanced and fulfilling life, continuously growing and evolving through the dynamic interplay of emotion and logic.",
+        hrefto: "https://dhnz.short.gy/p3mad",
       },
       {
         header: "SRF 03 - Some Rhyming Feeling",
