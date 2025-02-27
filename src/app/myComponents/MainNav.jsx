@@ -31,6 +31,14 @@ export function MainNav({ className, ...props }) {
           </Link>
           <Link
             target="_blank"
+            href="https://dhnz.short.gy/articles"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            {" "}
+            Discussion Articles
+          </Link>
+          <Link
+            target="_blank"
             href="https://dhnz.short.gy/about"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
