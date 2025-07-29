@@ -3,16 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import Link from 'next/link';
+import { NAV_LINKS } from "@/app/staticData/navLinks";
 
 export default function Navbar() {
-  const links = [
-    { href: "https://dhnz.short.gy/zeal", text: "Zanny Zeal!" },
-    { href: "https://dhnz.short.gy/articles", text: "Discussion Articles" },
-    { href: "https://dhnz.short.gy/discussion", text: "For Discussion." },
-    { href: "https://dhnz.short.gy/about", text: "Who am I?" },
-    { href: "https://dhnz.short.gy/connect", text: "Wanna Connect?" },
-    { href: "https://dhnz.short.gy/wisdom", text: "What's Wisdom?" }
-  ];
+  const links = NAV_LINKS.map(link => ({
+    ...link,
+    text: link.text.endsWith('!') || link.text.endsWith('.') || link.text.endsWith('?') ? link.text : link.text + '!'
+  }));
 
   return (
     <header className="w-full bg-white shadow-sm dark:bg-black dark:text-gray-50">
