@@ -174,7 +174,7 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/usefully.useless", Icon: "Youtube" },
+      { Link: "https://youtube.com/@usefully.useless", Icon: "Youtube" },
       { Link: "https://www.instagram.com/usefully.useless", Icon: "Instagram" },
     ],
   }
