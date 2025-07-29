@@ -1,4 +1,4 @@
-import { Facebook, Linkedin, Instagram, Github, Twitter, Youtube } from "lucide-react";
+
 
 export const PersonaData = {
   Myspy: {
@@ -61,11 +61,11 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/@artificially.conscious", Icon: <Youtube /> },
-      { Link: "https://www.instagram.com/artificially.conscious", Icon: <Instagram /> },
-      { Link: "https://www.linkedin.com/in/madmyspy", Icon: <Linkedin /> },
-      { Link: "https://github.com/MadhusudhanPathak", Icon: <Github /> },
-      { Link: "https://twitter.com/MadMyspy", Icon: <Twitter /> },
+      { Link: "https://youtube.com/@artificially.conscious", Icon: "Youtube" },
+      { Link: "https://www.instagram.com/artificially.conscious", Icon: "Instagram" },
+      { Link: "https://www.linkedin.com/in/madmyspy", Icon: "Linkedin" },
+      { Link: "https://github.com/MadhusudhanPathak", Icon: "Github" },
+      { Link: "https://twitter.com/MadMyspy", Icon: "Twitter" },
     ],
   },
   "Madhusudhan Pathak": {
@@ -107,8 +107,8 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/@enlightened.demon.", Icon: <Youtube /> },
-      { Link: "https://www.instagram.com/enlightened.demon", Icon: <Instagram /> },
+      { Link: "https://youtube.com/@enlightened.demon.", Icon: "Youtube" },
+      { Link: "https://www.instagram.com/enlightened.demon", Icon: "Instagram" },
     ],
   },
   "Captain X": {
@@ -136,9 +136,9 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/@_.captainx._", Icon: <Youtube /> },
-      { Link: "https://www.instagram.com/_.captainx._", Icon: <Instagram /> },
-      { Link: "https://www.facebook.com/akamyspy", Icon: <Facebook /> },
+      { Link: "https://youtube.com/@_.captainx._", Icon: "Youtube" },
+      { Link: "https://www.instagram.com/_.captainx._", Icon: "Instagram" },
+      { Link: "https://www.facebook.com/akamyspy", Icon: "Facebook" },
     ],
   },
   Maneswar: {
@@ -159,8 +159,8 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/@intellect.moron.", Icon: <Youtube /> },
-      { Link: "https://www.instagram.com/intellect.moron", Icon: <Instagram /> },
+      { Link: "https://youtube.com/@intellect.moron.", Icon: "Youtube" },
+      { Link: "https://www.instagram.com/intellect.moron", Icon: "Instagram" },
     ],
   },
   Nicof: {
@@ -174,8 +174,8 @@ export const PersonaData = {
       },
     ],
     socials: [
-      { Link: "https://youtube.com/@usefully.useless", Icon: <Youtube /> },
-      { Link: "https://www.instagram.com/usefully.useless", Icon: <Instagram /> },
+      { Link: "https://dhnz.short.gy/usefully.useless", Icon: "Youtube" },
+      { Link: "https://www.instagram.com/usefully.useless", Icon: "Instagram" },
     ],
-  },
+  }
 };

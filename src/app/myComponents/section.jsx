@@ -1,6 +1,17 @@
+import React from "react";
 import Discoveries from "./discoveries";
 import { PersonaData } from "../staticData/classifiedRawData";
 import Link from "next/link";
+import { Facebook, Linkedin, Instagram, Github, Twitter, Youtube } from "lucide-react";
+
+const IconMap = {
+  Facebook: Facebook,
+  Linkedin: Linkedin,
+  Instagram: Instagram,
+  Github: Github,
+  Twitter: Twitter,
+  Youtube: Youtube,
+};
 
 export default function Section() {
   return (
@@ -17,7 +28,7 @@ export default function Section() {
               {PersonaData[persona]["socials"].map((element, index) => {
                 return (
                   <Link key={index} href={element.Link} target="_blank">
-                    {element.Icon}
+                    {IconMap[element.Icon] && React.createElement(IconMap[element.Icon])}
                   </Link>
                 );
               })}
@@ -26,7 +37,7 @@ export default function Section() {
 
           <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 mx-auto w-2/3">
             {PersonaData[persona]["discoveries"].map((element, index) => (
-              <div key={index}>
+              <div key={index} className="h-full">
                 <Discoveries
                   header={element.header}
                   desc={element.desc}

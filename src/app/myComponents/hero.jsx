@@ -1,35 +1,25 @@
 "use client";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import backgroudDark from "../../../public/Dark.jpg";
-import backgroudLight from "../../../public/Light.jpg";
+
 import Typewriter from "typewriter-effect";
-import { useEffect, useState } from "react";
+import { HERO_CONTENT } from "../staticData/heroContent";
+
 export default function Hero() {
   const { theme } = useTheme();
 
-  const [currentWidth, setCurrentWidth] = useState(0);
-  useEffect(() => {
-    const handleResize = () => {
-      setCurrentWidth(window.outerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    setCurrentWidth(window.outerWidth);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   return (
     <>
-      {currentWidth > 770 && (
-        <div className="-z-10 absolute w-full">
+      <div className="-z-10 absolute w-full">
           <Image
-            src={theme === "light" ? backgroudLight : backgroudDark}
+            src={theme === "light" ? "/Light.jpg" : "/Dark.jpg"}
             className="h-[90vh] bg-cover opacity-50"
             alt="backgroundImage"
+            width={1920}
+            height={1080}
+            priority
           />
         </div>
-      )}
 
       <div
         className={`flex flex-col h-[89vh] items-center text-center justify-center md:justify-end`}
@@ -42,13 +32,7 @@ export default function Hero() {
             <h1 className="ml-0 md:ml-3 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl font-serif">
               <Typewriter
                 options={{
-                  strings: [
-                    "Myspy.",
-                    "Madhusudhan.",
-                    "Maneswar.",
-                    "Captain X.",
-                    "Nicof.",
-                  ],
+                  strings: HERO_CONTENT.typewriterStrings,
                   autoStart: true,
                   loop: true,
                 }}
@@ -56,14 +40,11 @@ export default function Hero() {
             </h1>
           </div>
         </div>
-        <p className="text-3xl italic font-serif font-">
-          Divided by Personas, United by Purpose.
+        <p className="text-3xl italic font-serif">
+          {HERO_CONTENT.tagline}
         </p>
         <p className="mt-3 text-center text-wrap mx-12 md:mx-52 ">
-          Keep Calm, Website is Under Construction. I have logically organised{" "}
-          {`"myself"`} into Five Specific sets of traits and skills, mainly for
-          self-management and efficiency. All of my Work/Creations are
-          categorised accordingly {"(aka Persona-Wise)"}.
+          {HERO_CONTENT.description}
         </p>
       </div>
     </>
