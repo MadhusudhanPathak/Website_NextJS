@@ -1,15 +1,32 @@
-import { ModeToggle } from "@/app/myComponents/DarkMode";
+import { ModeToggle } from "@/components/DarkMode";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
 import Link from 'next/link';
-import { NAV_LINKS } from "@/app/staticData/navLinks";
+import { NAV_LINKS } from "@/data/navLinks";
 
+/**
+ * Navbar component displays the navigation bar with theme toggle
+ * @returns {JSX.Element} The navigation bar
+ */
 export default function Navbar() {
-  const links = NAV_LINKS.map(link => ({
-    ...link,
-    text: link.text.endsWith('!') || link.text.endsWith('.') || link.text.endsWith('?') ? link.text : link.text + '!'
-  }));
+  // Validate NAV_LINKS
+  if (!NAV_LINKS || !Array.isArray(NAV_LINKS)) {
+    console.error("NAV_LINKS is missing or invalid");
+    return <header>Error loading navbar</header>;
+  }
+
+  const links = NAV_LINKS.map(link => {
+    if (!link || !link.href || typeof link.text !== 'string') {
+      console.warn("Invalid link in NAV_LINKS", link);
+      return null;
+    }
+
+    return {
+      ...link,
+      text: link.text.endsWith('!') || link.text.endsWith('.') || link.text.endsWith('?') ? link.text : link.text + '!'
+    };
+  }).filter(Boolean); // Remove any null values
 
   return (
     <header className="w-full bg-white shadow-sm dark:bg-black dark:text-gray-50">
@@ -19,7 +36,7 @@ export default function Navbar() {
         </Link>
         <nav className="hidden space-x-4 lg:flex lg:items-center">
           {links.map((link, index) => (
-            <Link key={index} target="_blank" href={link.href} className="text-sm font-medium transition-colors hover:text-primary">
+            <Link key={index} target="_blank" href={link.href} rel="noopener noreferrer" className="text-sm font-medium transition-colors hover:text-primary">
               {link.text}
             </Link>
           ))}
@@ -35,7 +52,7 @@ export default function Navbar() {
           <SheetContent side="left">
             <div className="grid gap-2 py-6">
               {links.map((link, index) => (
-                <Link key={index} target="_blank" href={link.href} className="text-sm font-medium transition-colors hover:text-primary">
+                <Link key={index} target="_blank" href={link.href} rel="noopener noreferrer" className="text-sm font-medium transition-colors hover:text-primary">
                   {link.text}
                 </Link>
               ))}
