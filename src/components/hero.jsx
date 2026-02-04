@@ -3,10 +3,20 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 
 import Typewriter from "typewriter-effect";
-import { HERO_CONTENT } from "../staticData/heroContent";
+import { HERO_CONTENT } from "@/data/heroContent";
 
+/**
+ * Hero component displays the main banner with animated typewriter text
+ * @returns {JSX.Element|null} The hero section or null if data is invalid
+ */
 export default function Hero() {
   const { theme } = useTheme();
+
+  // Validate HERO_CONTENT data
+  if (!HERO_CONTENT || !Array.isArray(HERO_CONTENT?.typewriterStrings)) {
+    console.error("HERO_CONTENT is missing or invalid");
+    return null;
+  }
 
   return (
     <>
@@ -41,10 +51,10 @@ export default function Hero() {
           </div>
         </div>
         <p className="text-3xl italic font-serif">
-          {HERO_CONTENT.tagline}
+          {HERO_CONTENT.tagline || "Loading..."}
         </p>
         <p className="mt-3 text-center text-wrap mx-12 md:mx-52 ">
-          {HERO_CONTENT.description}
+          {HERO_CONTENT.description || "Loading..."}
         </p>
       </div>
     </>
