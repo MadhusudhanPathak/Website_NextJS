@@ -125,12 +125,12 @@ function DockItem({ children, className, onClick }) {
 
 function DockIcon({ children, className }) {
   const context = useContext(DockContext);
-  const dockTextColor = context?.dockTextColor || "#f0f0f0";
+  const dockTextColor = context?.dockTextColor || "#e5e5e5";
   
-  // Determine icon background based on text color (inverse for contrast)
+  // Determine icon background and text color for better contrast
   const isLight = dockTextColor === "#1a1a1a";
-  const iconBgColor = isLight ? "#f0f0f0" : "#ffffff";
-  const iconTextColor = isLight ? "#1a1a1a" : "#1a1a1a";
+  const iconBgColor = isLight ? "#e5e5e5" : "#2a2a2a";
+  const iconTextColor = isLight ? "#000000" : "#ffffff";
   
   return (
     <div

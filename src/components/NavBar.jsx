@@ -49,10 +49,10 @@ export default function Navbar() {
     }).filter(Boolean);
   }, []);
 
-  // Theme colors for dock
-  const isDarkMode = theme === "dark";
-  const dockBgColor = isDarkMode ? "#1a1a1a" : "#f0f0f0";
-  const dockTextColor = isDarkMode ? "#f0f0f0" : "#1a1a1a";
+  // Theme colors for dock - default to dark mode if theme is not yet loaded
+  const isDarkMode = theme !== "light"; // Default to dark (true) when theme is undefined/null
+  const dockBgColor = isDarkMode ? "#0f0f0f" : "#f5f5f5";
+  const dockTextColor = isDarkMode ? "#e5e5e5" : "#1a1a1a";
 
   // Handle external link opening
   const handleExternalLink = useCallback((href) => {
