@@ -31,5 +31,19 @@ export default function Cursor() {
     return null;
   }
 
-  return <AnimatedCursor />;
+  return (
+    <AnimatedCursor
+      innerSize={10}
+      outerSize={25}
+      innerScale={1.5}
+      outerScale={2}
+      outerAlpha={0.4}
+      innerStyle={{
+        backgroundColor: 'rgba(34, 197, 94, 1)',
+      }}
+      outerStyle={{
+        border: '2px solid rgba(34, 197, 94, 1)',
+      }}
+    />
+  );
 }

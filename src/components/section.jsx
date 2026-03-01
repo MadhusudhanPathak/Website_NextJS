@@ -150,7 +150,7 @@ export default function Section() {
             {/* Discoveries Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto w-2/3">
               {validDiscoveries.map((discovery, idx) => (
-                <div key={`discovery-${persona}-${idx}`} className="h-full">
+                <div key={`discovery-${persona}-${idx}`}>
                   <Discoveries
                     header={discovery.header}
                     desc={discovery.desc}

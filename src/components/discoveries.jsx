@@ -33,7 +33,8 @@ function validateDiscoveryProps(props) {
  * - Hover effects and transitions
  * - External link with proper rel attributes
  * - Comprehensive prop validation
- * 
+ * - Green spotlight hover effect
+ *
  * @param {Object} props - Component props
  * @param {string} props.header - Header/title of the discovery
  * @param {string} props.desc - Description/date of the discovery
@@ -60,7 +61,7 @@ export default function Discoveries({ header, desc, childDesc, hrefto }) {
       rel="noopener noreferrer"
       passHref
     >
-      <Card className="max-w-md h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer hover:bg-accent/50">
+      <Card className="max-w-lg h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:[box-shadow:0_0_0_1px_rgba(34,197,94,0.2)]">
         <CardHeader className="text-center">
           <CardTitle className="text-lg lg:text-2xl font-serif">
             {header}
@@ -68,8 +69,8 @@ export default function Discoveries({ header, desc, childDesc, hrefto }) {
           <CardDescription className="text-sm md:text-base">
             {desc}
           </CardDescription>
-          <CardContent className="items-center pt-4">
-            <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+          <CardContent className="items-center pt-4 px-4 pb-4">
+            <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 font-serif">
               {childDesc}
             </p>
           </CardContent>
