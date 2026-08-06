@@ -6,7 +6,13 @@ import { useTheme } from "next-themes";
 import { MenuIcon } from "lucide-react";
 import { ModeToggle } from "@/components/DarkMode";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Dock, DockItem, DockIcon } from "@/components/ui/dock";
 import { NAV_LINKS, validateNavLinks } from "@/data/navLinks";
 
@@ -23,18 +29,6 @@ import { NAV_LINKS, validateNavLinks } from "@/data/navLinks";
 export default function Navbar() {
   const { theme } = useTheme();
 
-  // Validate NAV_LINKS
-  if (!validateNavLinks()) {
-    console.error("NAV_LINKS validation failed - navigation data is invalid");
-    return (
-      <header className="w-full bg-white shadow-sm dark:bg-black relative z-50">
-        <div className="container mx-auto px-4 py-4">
-          <span className="text-red-500">Error loading navigation</span>
-        </div>
-      </header>
-    );
-  }
-
   // Process and memoize links to avoid unnecessary re-renders
   const processedLinks = useMemo(() => {
     return NAV_LINKS.map((link) => {
@@ -49,16 +43,28 @@ export default function Navbar() {
     }).filter(Boolean);
   }, []);
 
-  // Theme colors for dock - default to dark mode if theme is not yet loaded
-  const isDarkMode = theme !== "light"; // Default to dark (true) when theme is undefined/null
-  const dockBgColor = isDarkMode ? "#0f0f0f" : "#f5f5f5";
-  const dockTextColor = isDarkMode ? "#e5e5e5" : "#1a1a1a";
-
   // Handle external link opening
   const handleExternalLink = useCallback((href) => {
     if (!href) return;
     window.open(href, "_blank", "noopener,noreferrer");
   }, []);
+
+  // Validate NAV_LINKS
+  if (!validateNavLinks()) {
+    console.error("NAV_LINKS validation failed - navigation data is invalid");
+    return (
+      <header className="w-full bg-white shadow-sm dark:bg-black relative z-50">
+        <div className="container mx-auto px-4 py-4">
+          <span className="text-red-500">Error loading navigation</span>
+        </div>
+      </header>
+    );
+  }
+
+  // Theme colors for dock - default to dark mode if theme is not yet loaded
+  const isDarkMode = theme !== "light"; // Default to dark (true) when theme is undefined/null
+  const dockBgColor = isDarkMode ? "#0f0f0f" : "#f5f5f5";
+  const dockTextColor = isDarkMode ? "#e5e5e5" : "#1a1a1a";
 
   return (
     <header className="w-full bg-white shadow-sm dark:bg-black dark:text-gray-50 relative z-50">
@@ -121,6 +127,10 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
+            <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+            <SheetDescription className="sr-only">
+              Links to site sections and a theme toggle
+            </SheetDescription>
             <div className="grid gap-2 py-6">
               {processedLinks.map((link, index) => (
                 <Link

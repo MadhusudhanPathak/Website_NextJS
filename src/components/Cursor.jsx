@@ -17,8 +17,11 @@ export default function Cursor() {
   const currentWidth = useScreenSize();
   const [mounted, setMounted] = useState(false);
 
-  // Hydration fix: only render after client-side hydration
+  // Hydration fix: only render after client-side hydration. Initial state
+  // must be false on both server and client to avoid a hydration mismatch,
+  // so flipping it in an effect (not the initializer) is intentional here.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

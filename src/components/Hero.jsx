@@ -57,9 +57,6 @@ export default function Hero() {
                   autoStart: true,
                   loop: true,
                 }}
-                onInit={(typewriter) => {
-                  // Initialize typewriter with default behavior
-                }}
               />
             </h1>
           </div>

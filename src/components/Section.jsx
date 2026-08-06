@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import { Facebook, Linkedin, Instagram, Github, Twitter, Youtube } from "lucide-react";
-import Discoveries from "./discoveries";
+import Discoveries from "./Discoveries";
 import { PersonaData } from "@/data/classifiedRawData";
 
 /**
@@ -78,6 +78,12 @@ function isValidPersonaData(personaData) {
  * @returns {JSX.Element} The section with persona data
  */
 export default function Section() {
+  // Get and memoize persona keys
+  const personaKeys = useMemo(() => {
+    if (!PersonaData || typeof PersonaData !== "object") return [];
+    return Object.keys(PersonaData).filter((key) => key.trim().length > 0);
+  }, []);
+
   // Validate PersonaData
   if (!PersonaData || typeof PersonaData !== "object") {
     console.error("PersonaData is missing or invalid");
@@ -87,12 +93,6 @@ export default function Section() {
       </div>
     );
   }
-
-  // Get and memoize persona keys
-  const personaKeys = useMemo(
-    () => Object.keys(PersonaData).filter((key) => key.trim().length > 0),
-    []
-  );
 
   if (personaKeys.length === 0) {
     console.warn("No valid personas found in PersonaData");

@@ -28,9 +28,6 @@ export function useScreenSize() {
       setCurrentWidth(window.innerWidth);
     };
 
-    // Set initial width
-    setCurrentWidth(window.innerWidth);
-
     // Add event listener
     window.addEventListener("resize", handleResize);
 

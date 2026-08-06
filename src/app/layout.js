@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-import { ThemeProvider } from "@/components/themeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import siteConfig from "@/config/site.config";
 import "./globals.css";
 
@@ -80,8 +81,10 @@ export default function RootLayout({ children }) {
           defaultTheme={siteConfig.theme.defaultTheme}
           storageKey="site-theme"
         >
-          {children}
-          <Toaster />
+          <ErrorBoundary>
+            {children}
+            <Toaster />
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>
