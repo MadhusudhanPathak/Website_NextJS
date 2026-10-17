@@ -1,16 +1,16 @@
-import Section from "@/components/Section";
-import Navbar from "@/components/NavBar";
-import Cursor from "@/components/Cursor";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
+import NavBar from "@/components/layout/NavBar";
+import Cursor from "@/components/layout/Cursor";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import Personas from "@/components/sections/Personas";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <NavBar />
       <Cursor />
       <Hero />
-      <Section />
+      <Personas />
       <Footer />
     </>
   );

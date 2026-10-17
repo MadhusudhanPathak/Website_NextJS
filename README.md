@@ -1,10 +1,10 @@
 # Madhusudhan Pathak - Personal Website & Portfolio
 
-A personal website and portfolio built with **Next.js**, **React**, **Tailwind CSS**, and **shadcn/ui**. Features dark/light theme support, animated components, and a persona-based content organization system.
+A personal website and portfolio built with **Next.js** (App Router), **React**, **Tailwind CSS**, and **shadcn/ui**. It has light/dark themes, animated navigation, and content organized by persona.
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 20.9+ (required by Next.js 16)
 - npm
 
 ## Getting Started
@@ -22,7 +22,7 @@ A personal website and portfolio built with **Next.js**, **React**, **Tailwind C
    npm install
    ```
 
-3. **Set up environment variables:**
+3. **Set up environment variables (optional):**
 
    ```bash
    cp .env.example .env.local
@@ -40,97 +40,108 @@ A personal website and portfolio built with **Next.js**, **React**, **Tailwind C
 
 ```bash
 npm run dev     # Development server with hot reload
-npm run build   # Build for production
-npm start       # Start production server
-npm run lint    # Run ESLint
+npm run build   # Production build
+npm start       # Serve the production build
+npm run lint    # ESLint (next/core-web-vitals)
 ```
 
 ## Architecture
 
-Single-page Next.js App Router site — no API routes or database. Content lives in plain data modules and is rendered by presentational components.
+A single-page static site with no API routes, database, or auth. Content lives in plain data modules, and presentational components render it.
 
 ```text
 src/
-├── app/                       # Next.js App Router
-│   ├── layout.js              # Root layout: fonts, metadata, theme provider, error boundary
-│   ├── page.js                # Home page composition
-│   ├── not-found.js           # Custom 404 page
-│   └── globals.css            # Tailwind base styles and CSS variables
-├── components/                # React components
-│   ├── ui/                    # shadcn/ui primitives actually in use (button, card, dock, sheet, toast)
-│   ├── NavBar.jsx             # Navigation (desktop dock, mobile sheet menu, theme toggle)
-│   ├── Hero.jsx                # Hero banner with typewriter animation
-│   ├── Section.jsx             # Persona sections (socials + discovery cards)
-│   ├── Discoveries.jsx         # Individual discovery card
-│   ├── Footer.jsx              # Footer navigation
-│   ├── Cursor.jsx              # Desktop-only animated cursor
-│   ├── DarkMode.jsx           # Theme toggle button
-│   ├── ThemeProvider.jsx       # next-themes wrapper
-│   └── ErrorBoundary.jsx      # Top-level render-error fallback
-├── data/                      # Static content
-│   ├── navLinks.js            # Navigation links
-│   ├── heroContent.js         # Hero section copy
-│   └── classifiedRawData.js   # Persona/discovery/social data
+├── app/                      # Routing, root layout, metadata, global CSS
+│   ├── layout.js             # Fonts, metadata, theme provider, error boundary
+│   ├── page.js               # Home page composition
+│   ├── not-found.js          # 404 page
+│   └── globals.css           # Tailwind layers and theme CSS variables
+├── components/
+│   ├── layout/               # Site chrome
+│   │   ├── NavBar.jsx        # Header: home link + desktop/mobile nav
+│   │   ├── DesktopNav.jsx    # Magnifying dock of links + theme toggle
+│   │   ├── MobileNav.jsx     # Sheet menu of links + theme toggle
+│   │   ├── Footer.jsx        # Footer links and message
+│   │   └── Cursor.jsx        # Desktop-only animated cursor
+│   ├── sections/             # Page content
+│   │   ├── Hero.jsx          # Banner with typewriter greeting
+│   │   ├── Personas.jsx      # Validates and lists every persona
+│   │   ├── PersonaSection.jsx # One persona: socials + discovery grid
+│   │   └── DiscoveryCard.jsx # One discovery card
+│   ├── theme/
+│   │   ├── ThemeProvider.jsx # next-themes client wrapper
+│   │   └── ThemeToggle.jsx   # Light/dark toggle button
+│   ├── ErrorBoundary.jsx     # Top-level render-error fallback
+│   └── ui/                   # shadcn/ui primitives in use (button, card, dock, sheet)
+├── config/
+│   └── site.config.js        # Site metadata and theme settings, env-overridable
+├── data/                     # Static content + validate*() guards
+│   ├── navLinks.js
+│   ├── heroContent.js
+│   ├── footerContent.js
+│   └── personas.js
 ├── hooks/
-│   └── useScreenSize.js       # Window width tracker (SSR-safe)
-├── lib/
-│   └── utils.js                # `cn()` className helper (clsx + tailwind-merge)
-└── config/
-    └── site.config.js          # Site metadata and theme defaults, env-overridable
+│   ├── useMounted.js         # True only after hydration (client-only rendering)
+│   └── useScreenSize.js      # Window width tracker
+└── lib/
+    └── utils.js              # cn() class merging, isNonEmptyString()
 
-public/                         # Static assets (theme background images, favicon source)
+public/                       # Theme background images and icon
 ```
 
-## Content Management
+Data flows one way: `src/data/*` → section/layout components → `ui/` primitives. Each component validates its data with the module's `validate*()` guard and shows an inline error message instead of crashing. Unexpected render errors are caught by `ErrorBoundary`.
 
-**Navigation links** — `src/data/navLinks.js`:
+## Editing Content
+
+All site copy lives in `src/data/`. Edit those files rather than the components.
+
+**Navigation links** (nav bar and footer): `src/data/navLinks.js`
 
 ```javascript
-export const NAV_LINKS = [
-  { href: "https://example.com", text: "Link Text" },
-];
+export const NAV_LINKS = [{ href: "https://example.com", text: "Link Text" }];
 ```
 
-**Hero content** — `src/data/heroContent.js`:
+**Hero banner**: `src/data/heroContent.js`
 
 ```javascript
 export const HERO_CONTENT = {
+  greeting: "Hey there, it's",
   typewriterStrings: ["Name1", "Name2"],
   tagline: "Your tagline",
   description: "Your description",
 };
 ```
 
-**Persona data** — `src/data/classifiedRawData.js`:
+**Footer message**: `src/data/footerContent.js`
+
+**Personas**: `src/data/personas.js`
 
 ```javascript
-export const PersonaData = {
-  PersonaName: {
-    socials: [{ Link: "url", Icon: "Github" }],
-    discoveries: [{ header, desc, minDesc, hrefto }],
+export const PERSONAS = {
+  "Persona Name": {
+    socials: [{ href: "https://github.com/you", icon: "Github" }],
+    discoveries: [
+      { title: "Title", date: "Jan 2025", summary: "Short summary", href: "https://..." },
+    ],
   },
 };
 ```
 
-Each data module exports a `validate*()` function that components call before rendering; invalid data renders a fallback message instead of crashing.
+Supported social `icon` values: `Facebook`, `Github`, `Instagram`, `Linkedin`, `Twitter`, `Youtube` (see `SOCIAL_ICONS` in `PersonaSection.jsx`). A persona with malformed data is skipped.
 
 ## Configuration
 
-`src/config/site.config.js` reads these optional environment variables (see `.env.example`), falling back to sensible defaults when unset:
+`src/config/site.config.js` reads these optional variables (see `.env.example`) and falls back to the defaults below:
 
-| Variable                               | Default                          |
-| -------------------------------------- | -------------------------------- |
-| `NEXT_PUBLIC_SITE_URL`                 | `http://localhost:3000`          |
-| `NEXT_PUBLIC_SITE_TITLE`               | `Madhusudhan Pathak - Portfolio` |
-| `NEXT_PUBLIC_DEFAULT_THEME`            | `system`                         |
-| `NEXT_PUBLIC_ENABLE_SYSTEM_THEME`      | `true`                           |
-| `NEXT_PUBLIC_DISABLE_THEME_TRANSITION` | `true`                           |
+| Variable                               | Default                              |
+| -------------------------------------- | ------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL`                 | `http://localhost:3000`              |
+| `NEXT_PUBLIC_SITE_TITLE`               | `Madhusudhan Pathak - Portfolio`     |
+| `NEXT_PUBLIC_DEFAULT_THEME`            | `system` (`light`, `dark`, `system`) |
+| `NEXT_PUBLIC_ENABLE_SYSTEM_THEME`      | `true`                               |
+| `NEXT_PUBLIC_DISABLE_THEME_TRANSITION` | `true`                               |
 
-## Styling
-
-- Tailwind CSS, mobile-first, with `dark:` variants
-- Theme colors defined as CSS variables in `src/app/globals.css`
-- Framer Motion for the nav dock; Tailwind CSS animations elsewhere
+Set `NEXT_PUBLIC_SITE_URL` to the public domain in production so Open Graph URLs are correct.
 
 ## Deployment
 
@@ -139,7 +150,7 @@ npm run build
 npm start
 ```
 
-Deploys cleanly to [Vercel](https://vercel.com/new) or any Node.js host that can run `next start`.
+It deploys to [Vercel](https://vercel.com/new) or any Node.js host that can run `next start`.
 
 ## Author
 

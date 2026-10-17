@@ -1,38 +1,28 @@
-/**
- * Hero section content configuration
- * Centralized management of hero section text and content
- */
+import { isNonEmptyString } from "@/lib/utils";
 
 /**
- * Hero section content
- * @type {{typewriterStrings: string[], tagline: string, description: string}}
+ * Hero banner copy. `typewriterStrings` cycle after the `greeting`.
+ * @type {{ greeting: string, typewriterStrings: string[], tagline: string, description: string }}
  */
 export const HERO_CONTENT = {
-  typewriterStrings: [
-    "Myspy",
-    "Madhusudhan",
-    "Maneswar",
-    "Captain X",
-    "Nicof",
-  ],
+  greeting: "Hey there, it's",
+  typewriterStrings: ["Myspy", "Madhusudhan", "Maneswar", "Captain X", "Nicof"],
   tagline: "Divided by Personas, United by Purpose.",
-  description: "Keep Calm, Website is Under Construction. I have logically organised \"myself\" into Five Specific sets of traits and skills, mainly for self-management and efficiency. All of my Work/Creations are categorised accordingly (aka Persona-Wise).",
+  description:
+    'Keep calm, the website is under construction. I have logically organized "myself" into five specific sets of traits and skills, mainly for self-management and efficiency. All of my work and creations are categorized accordingly (aka persona-wise).',
 };
 
 /**
- * Validates hero content structure
- * @returns {boolean} True if all content is valid
+ * @returns {boolean} True if every hero field is present and non-empty.
  */
 export function validateHeroContent() {
   return (
-    HERO_CONTENT &&
+    Boolean(HERO_CONTENT) &&
+    isNonEmptyString(HERO_CONTENT.greeting) &&
     Array.isArray(HERO_CONTENT.typewriterStrings) &&
     HERO_CONTENT.typewriterStrings.length > 0 &&
-    typeof HERO_CONTENT.tagline === 'string' &&
-    HERO_CONTENT.tagline.length > 0 &&
-    typeof HERO_CONTENT.description === 'string' &&
-    HERO_CONTENT.description.length > 0
+    HERO_CONTENT.typewriterStrings.every(isNonEmptyString) &&
+    isNonEmptyString(HERO_CONTENT.tagline) &&
+    isNonEmptyString(HERO_CONTENT.description)
   );
 }
-
-export default HERO_CONTENT;

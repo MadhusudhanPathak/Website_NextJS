@@ -1,41 +1,19 @@
 import { useEffect, useState } from "react";
 
 /**
- * Hook for tracking screen width with responsive updates
- * Features:
- * - Returns current window width
- * - Updates on window resize
- * - Safe for SSR (returns 0 on server)
- * - Cleans up event listeners on unmount
- * 
- * @returns {number} Current window width in pixels, or 0 if server-side
+ * Tracks the window's inner width, updating on resize.
+ * @returns {number} Width in pixels, or 0 during server rendering.
  */
 export function useScreenSize() {
-  const [currentWidth, setCurrentWidth] = useState(
+  const [width, setWidth] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth : 0
   );
 
   useEffect(() => {
-    // Return early if window is not available (server-side)
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    /**
-     * Handle window resize events
-     */
-    const handleResize = () => {
-      setCurrentWidth(window.innerWidth);
-    };
-
-    // Add event listener
+    const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return currentWidth;
+  return width;
 }
