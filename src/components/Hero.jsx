@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import { useTheme } from "next-themes";
@@ -12,11 +13,20 @@ import { HERO_CONTENT, validateHeroContent } from "@/data/heroContent";
  * - Animated typewriter effect for name/persona display
  * - Responsive layout with tailwind
  * - Graceful fallback on validation failure
- * 
+ *
  * @returns {JSX.Element|null} The hero section or null if data is invalid
  */
 export default function Hero() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Hydration fix: resolvedTheme is unknown on the server, so keep the
+  // default background until the client mounts to avoid a themed-image
+  // swap/flash right after load.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   // Validate HERO_CONTENT data
   if (!validateHeroContent()) {
@@ -28,16 +38,19 @@ export default function Hero() {
     );
   }
 
+  const backgroundSrc = mounted && resolvedTheme === "light" ? "/Light.jpg" : "/Dark.jpg";
+
   return (
     <>
       {/* Background image layer */}
-      <div className="-z-10 absolute w-full">
+      <div className="absolute inset-0 -z-10 h-[90vh] w-full overflow-hidden">
         <Image
-          src={theme === "light" ? "/Light.jpg" : "/Dark.jpg"}
-          className="h-[90vh] bg-cover opacity-50"
+          src={backgroundSrc}
           alt="Hero background"
-          width={1920}
-          height={1080}
+          fill
+          sizes="100vw"
+          quality={60}
+          className="object-cover opacity-50"
           priority
           draggable={false}
         />
