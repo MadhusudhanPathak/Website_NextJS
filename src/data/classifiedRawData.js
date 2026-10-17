@@ -65,7 +65,6 @@ export const PersonaData = {
       { Link: "https://www.instagram.com/artificially.conscious", Icon: "Instagram" },
       { Link: "https://www.linkedin.com/in/madmyspy", Icon: "Linkedin" },
       { Link: "https://github.com/MadhusudhanPathak", Icon: "Github" },
-      { Link: "https://twitter.com/MadMyspy", Icon: "Twitter" },
     ],
   },
   "Madhusudhan Pathak": {

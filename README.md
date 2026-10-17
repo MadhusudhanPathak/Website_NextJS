@@ -122,8 +122,8 @@ Each data module exports a `validate*()` function that components call before re
 | -------------------------------------- | -------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`                 | `http://localhost:3000`          |
 | `NEXT_PUBLIC_SITE_TITLE`               | `Madhusudhan Pathak - Portfolio` |
-| `NEXT_PUBLIC_DEFAULT_THEME`            | `dark`                           |
-| `NEXT_PUBLIC_ENABLE_SYSTEM_THEME`      | `false`                          |
+| `NEXT_PUBLIC_DEFAULT_THEME`            | `system`                         |
+| `NEXT_PUBLIC_ENABLE_SYSTEM_THEME`      | `true`                           |
 | `NEXT_PUBLIC_DISABLE_THEME_TRANSITION` | `true`                           |
 
 ## Styling

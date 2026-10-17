@@ -9,8 +9,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   author: 'Madhusudhan Pathak',
   theme: {
-    defaultTheme: process.env.NEXT_PUBLIC_DEFAULT_THEME || 'dark',
-    enableSystem: process.env.NEXT_PUBLIC_ENABLE_SYSTEM_THEME === 'true',
+    defaultTheme: process.env.NEXT_PUBLIC_DEFAULT_THEME || 'system',
+    enableSystem: process.env.NEXT_PUBLIC_ENABLE_SYSTEM_THEME !== 'false',
     disableTransitionOnChange:
       process.env.NEXT_PUBLIC_DISABLE_THEME_TRANSITION !== 'false',
   },

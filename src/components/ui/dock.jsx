@@ -69,7 +69,7 @@ function Dock({
   );
 }
 
-function DockItem({ children, className, onClick }) {
+function DockItem({ children, className, onClick, ...rest }) {
   const context = useContext(DockContext);
   if (!context) {
     throw new Error("DockItem must be used within a Dock");
@@ -117,6 +117,7 @@ function DockItem({ children, className, onClick }) {
       tabIndex={0}
       role="button"
       aria-pressed="false"
+      {...rest}
     >
       {children}
     </motion.div>
